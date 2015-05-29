@@ -1221,8 +1221,6 @@ ve.init.mw.ViewPageTarget.prototype.setupToolbarSaveButton = function () {
 		this.toolbarSaveButton.$button.attr( 'accesskey', ve.msg( 'accesskey-save' ) );
 	}
 
-	this.updateToolbarSaveButtonState();
-
 	//Cancel button
 	this.toolbarCancelButton = new OO.ui.ButtonWidget(
 		{
@@ -1230,6 +1228,8 @@ ve.init.mw.ViewPageTarget.prototype.setupToolbarSaveButton = function () {
 		}
 	);
 	this.toolbarCancelButton.$element.addClass('ve-ui-toolbar-cancelButton');
+
+	this.updateToolbarSaveButtonState();
 
 	this.toolbarCancelButton.connect( this, { click: 'onToolbarCancelButtonClick' } );
 	this.toolbarSaveButton.connect( this, { click: 'onToolbarSaveButtonClick' } );
