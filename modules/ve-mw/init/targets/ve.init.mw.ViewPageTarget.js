@@ -30,6 +30,9 @@ ve.init.mw.ViewPageTarget = function VeInitMwViewPageTarget() {
 
 	// Properties
 	this.toolbarSaveButton = null;
+
+	this.toolbarCancelButton = null;
+
 	this.saveDialog = null;
 	this.onBeforeUnloadFallback = null;
 	this.onUnloadHandler = this.onUnload.bind( this );
@@ -403,6 +406,11 @@ ve.init.mw.ViewPageTarget.prototype.cancel = function ( trackMechanism ) {
 	mw.user.options.set( 'editondblclick', this.originalEditondbclick );
 	this.originalEditondbclick = undefined;
 
+	if ( this.toolbarCancelButton ) {
+		this.toolbarCancelButton.disconnect( this );
+		this.toolbarCancelButton.$element.detach();
+	}
+
 	if ( this.toolbarSaveButton ) {
 		// If deactivate is called before a successful load, then the save button has not yet been
 		// fully set up so disconnecting it would throw an error when trying call methods on the
@@ -527,8 +535,10 @@ ve.init.mw.ViewPageTarget.prototype.onSurfaceReady = function () {
 	// Update UI
 	this.changeDocumentTitle();
 
+	//TODO: included Cancel button here
 	this.setupToolbarSaveButton();
 	this.attachToolbarSaveButton();
+
 	this.restoreScrollPosition();
 	this.restoreEditSection();
 	this.setupUnloadHandlers();
@@ -913,6 +923,16 @@ ve.init.mw.ViewPageTarget.prototype.onNoChanges = function () {
  * @method
  * @param {jQuery.Event} e Mouse click event
  */
+ve.init.mw.ViewPageTarget.prototype.onToolbarCancelButtonClick = function () {
+	this.deactivate();
+};
+
+/**
+ * Handle clicks on the save button in the toolbar.
+ *
+ * @method
+ * @param {jQuery.Event} e Mouse click event
+ */
 ve.init.mw.ViewPageTarget.prototype.onToolbarSaveButtonClick = function () {
 	if ( this.edited || this.restoring ) {
 		this.showSaveDialog();
@@ -940,6 +960,8 @@ ve.init.mw.ViewPageTarget.prototype.updateToolbarSaveButtonState = function () {
 	isDisabled = !this.edited && !this.restoring;
 	this.toolbarSaveButton.setDisabled( isDisabled );
 	mw.hook( 've.toolbarSaveButton.stateChanged' ).fire( isDisabled );
+
+	this.toolbarCancelButton.setDisabled(false);
 };
 
 /**
@@ -1201,6 +1223,15 @@ ve.init.mw.ViewPageTarget.prototype.setupToolbarSaveButton = function () {
 
 	this.updateToolbarSaveButtonState();
 
+	//Cancel button
+	this.toolbarCancelButton = new OO.ui.ButtonWidget(
+		{
+			label: 'Cancel'
+		}
+	);
+	this.toolbarCancelButton.$element.addClass('ve-ui-toolbar-cancelButton');
+
+	this.toolbarCancelButton.connect( this, { click: 'onToolbarCancelButtonClick' } );
 	this.toolbarSaveButton.connect( this, { click: 'onToolbarSaveButtonClick' } );
 };
 
