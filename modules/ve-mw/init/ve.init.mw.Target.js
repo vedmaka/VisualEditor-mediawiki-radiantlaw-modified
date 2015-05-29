@@ -195,14 +195,14 @@ ve.init.mw.Target.static.toolbarGroups = [
 	// Link
 	{ include: [ 'link' ] },
 	// Cite
-	{
-		classes: [ 've-test-toolbar-cite' ],
-		type: 'list',
-		label: OO.ui.deferMsg( 'visualeditor-toolbar-cite-label' ),
-		indicator: 'down',
-		include: [ { group: 'cite' }, 'reference', 'reference/existing' ],
-		demote: [ 'reference', 'reference/existing' ]
-	},
+	//{
+	//	classes: [ 've-test-toolbar-cite' ],
+	//	type: 'list',
+	//	label: OO.ui.deferMsg( 'visualeditor-toolbar-cite-label' ),
+	//	indicator: 'down',
+	//	include: [ { group: 'cite' }, 'reference', 'reference/existing' ],
+	//	demote: [ 'reference', 'reference/existing' ]
+	//},
 	// Structure
 	{
 		classes: [ 've-test-toolbar-structure' ],
