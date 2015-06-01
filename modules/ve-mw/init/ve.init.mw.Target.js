@@ -39,7 +39,7 @@ ve.init.mw.Target = function VeInitMwTarget( pageName, revisionId ) {
 
 	this.preparedCacheKeyPromise = null;
 	this.clearState();
-	this.generateCitationFeatures();
+	//this.generateCitationFeatures();
 };
 
 /* Inheritance */

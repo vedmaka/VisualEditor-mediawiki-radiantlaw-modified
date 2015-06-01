@@ -22,7 +22,7 @@
 			'ext.visualEditor.mwcore',
 			'ext.visualEditor.mwlink',
 			'ext.visualEditor.data',
-			'ext.visualEditor.mwreference',
+			//'ext.visualEditor.mwreference',
 			'ext.visualEditor.mwtransclusion',
 			'ext.visualEditor.language',
 			'ext.visualEditor.icons'

@@ -44,16 +44,16 @@ ve.init.mw.MobileViewTarget.static.toolbarGroups = [
 	// Style
 	{ include: [ 'bold', 'italic' ] },
 	// Link
-	{ include: [ 'link' ] },
+	{ include: [ 'link' ] }//,
 	// Cite
-	{
-		header: OO.ui.deferMsg( 'visualeditor-toolbar-cite-label' ),
-		indicator: 'down',
-		type: 'list',
-		icon: 'reference',
-		title: OO.ui.deferMsg( 'visualeditor-toolbar-cite-label' ),
-		include: [ { group: 'cite' }, 'reference/existing' ]
-	}
+	//{
+	//	header: OO.ui.deferMsg( 'visualeditor-toolbar-cite-label' ),
+	//	indicator: 'down',
+	//	type: 'list',
+	//	icon: 'reference',
+	//	title: OO.ui.deferMsg( 'visualeditor-toolbar-cite-label' ),
+	//	include: [ { group: 'cite' }, 'reference/existing' ]
+	//}
 ];
 
 ve.init.mw.MobileViewTarget.static.excludeCommands = [];
