@@ -1065,7 +1065,7 @@ ve.init.mw.Target.prototype.tryWithPreparedCacheKey = function ( doc, options, e
 			// If using the cache key fails, we'll come back here with cachekey still set
 			delete data.cachekey;
 		}
-		return new mw.Api().post( data, { contentType: 'multipart/form-data' } )
+		return new mw.Api().post( data, { contentType: 'multipart/form-data', timeout: 180 * 1000 } )
 			.then(
 				function ( response, jqxhr ) {
 					var eventData = {
